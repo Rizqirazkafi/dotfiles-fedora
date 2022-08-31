@@ -1,21 +1,40 @@
 #!/usr/bin/sh
 xrandr --dpi 96
 bspc rule -r "*"
+MONITOR_NAME="eDP"
+EXTERNAL_MONITOR_NAME="HDMI-A-0"
+STATUS_EXTERNAL_MONITOR=$(xrandr --query | grep $EXTERNAL_MONITOR_NAME)
+if [[ ! $STATUS_EXTERNAL_MONITOR == *disconnected* ]]; then
+    /home/$USER/.screenlayout/second-activate.sh
+    nitrogen --restore --head=1&
+    notify-send "Second monitor attached!"
+else
+    /home/$USER/.screenlayout/second-deactivate.sh
+    notify-send "Second monitor deattached!"
+fi
 killall flameshot 
 killall nm-applet
 sxhkd &
-$HOME/.config/polybar/launch.sh &
 wmname compiz
 export _JAVA_AWT_WM_NONREPARENTING=1
 nm-applet &
 flameshot &
 nitrogen --restore &
 exec --no-startup-id xsettingsd &
-bspc monitor -d I II III IV V 
+export QT_STYLE_OVERRIDE=kvantum
+/usr/libexec/xfce-polkit &
+# /usr/lib/xfce4/notifyd/xfce4-notifyd &
+if [[ ! $STATUS_EXTERNAL_MONITOR == *disconnected* ]]; then
+	bspc monitor $MONITOR_NAME -d I II III IV V
+	bspc monitor $EXTERNAL_MONITOR_NAME -d VI VII VII
+else
+	bspc monitor -d I II III IV V 
+fi
+$HOME/.config/polybar/launch.sh &
 
 # Remove top padding in monocle mode
 # for side in top ; do bspc config ${side}_monocle_padding 0; done
-bspc config top_padding		 0
+# bspc config top_padding		 0
 bspc config border_width         2
 bspc config window_gap           5
 
