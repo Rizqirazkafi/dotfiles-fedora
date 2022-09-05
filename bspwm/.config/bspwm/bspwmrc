@@ -15,8 +15,9 @@ fi
 killall flameshot 
 killall nm-applet
 sxhkd &
-wmname compiz
-export _JAVA_AWT_WM_NONREPARENTING=1
+wmname compiz &
+export _JAVA_AWT_WM_NONREPARENTING=1 &
+wmname LG3D &
 nm-applet &
 flameshot &
 nitrogen --restore &
