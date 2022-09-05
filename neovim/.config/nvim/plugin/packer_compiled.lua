@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -39,7 +42,6 @@ local function save_profiles(threshold)
     end
   end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -79,6 +81,11 @@ _G.packer_plugins = {
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/dart-vim-plugin",
     url = "https://github.com/dart-lang/dart-vim-plugin"
   },
+  ["dartlang-snippets"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/dartlang-snippets",
+    url = "https://github.com/natebosch/dartlang-snippets"
+  },
   fzf = {
     loaded = true,
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/fzf",
@@ -105,8 +112,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
@@ -139,15 +147,20 @@ _G.packer_plugins = {
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-flutter",
     url = "https://github.com/thosakwe/vim-flutter"
   },
-  ["vim-lsc"] = {
+  ["vim-markdown"] = {
     loaded = true,
-    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-lsc",
-    url = "https://github.com/natebosch/vim-lsc"
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/hallison/vim-markdown"
   },
-  ["vim-lsc-dart"] = {
+  ["vim-projectionist"] = {
     loaded = true,
-    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-lsc-dart",
-    url = "https://github.com/natebosch/vim-lsc-dart"
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-projectionist",
+    url = "https://github.com/tpope/vim-projectionist"
+  },
+  ["vim-snippets"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-snippets",
+    url = "https://github.com/honza/vim-snippets"
   },
   vimtex = {
     loaded = true,
@@ -157,6 +170,13 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)

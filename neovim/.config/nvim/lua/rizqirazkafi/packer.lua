@@ -26,10 +26,15 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'somini/vim-autoclose'
   use 'lervag/vimtex'
+  -- Markdown
+  use 'hallison/vim-markdown'
   --Flutter
   use 'dart-lang/dart-vim-plugin'
   use 'thosakwe/vim-flutter'
-  use 'natebosch/vim-lsc'
-  use 'natebosch/vim-lsc-dart'
+  use 'honza/vim-snippets'
+  use 'natebosch/dartlang-snippets'
+  use 'tpope/vim-projectionist'
+  -- use 'natebosch/vim-lsc'
+  -- use 'natebosch/vim-lsc-dart'
 
 end)
