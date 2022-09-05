@@ -20,8 +20,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 nm-applet &
 flameshot &
 nitrogen --restore &
-exec --no-startup-id xsettingsd &
-export QT_STYLE_OVERRIDE=kvantum
+# exec --no-startup-id xsettingsd &
+# export QT_STYLE_OVERRIDE=kvantum
 /usr/libexec/xfce-polkit &
 # /usr/lib/xfce4/notifyd/xfce4-notifyd &
 if [[ ! $STATUS_EXTERNAL_MONITOR == *disconnected* ]]; then
