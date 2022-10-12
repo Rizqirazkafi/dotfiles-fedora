@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
   use {
       'nvim-treesitter/nvim-treesitter',
       run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-  } 
+  }
   use {'junegunn/fzf',
     run = '{ -> fzf#install() }'
   }
@@ -26,14 +26,31 @@ return require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'somini/vim-autoclose'
   use 'lervag/vimtex'
+  use 'nathanaelkane/vim-indent-guides'
   -- Markdown
   use 'hallison/vim-markdown'
+  -- CMP Plugins
+  use 'hrsh7th/nvim-cmp' -- The completion plugin
+  use 'hrsh7th/cmp-buffer' -- Buffer completion
+  use 'hrsh7th/cmp-path' -- Path completion
+  use 'hrsh7th/cmp-cmdline' -- Command line completion
+  -- use 'saadparwaiz1/cmp_luasnip' -- Snippet completion
+  -- use 'hrsh7th/cmp-nvim-lsp'
+  -- use 'hrsh7th/cmp-nvim-lua' -- Help to configure config
+  -- -- LSP
+  -- use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+  -- use 'williamboman/nvim-lsp-installer' -- simple to use LS installer
+  use "nvim-lua/plenary.nvim"
+  use {'akinsho/flutter-tools.nvim', requires = 'nvim-lua/plenary.nvim'}
+
+
   --Flutter
-  use 'dart-lang/dart-vim-plugin'
-  use 'thosakwe/vim-flutter'
-  use 'honza/vim-snippets'
-  use 'natebosch/dartlang-snippets'
-  use 'tpope/vim-projectionist'
+    -- Deprecated
+    use 'dart-lang/dart-vim-plugin'
+    -- use 'thosakwe/vim-flutter'
+    use 'honza/vim-snippets'
+    use 'natebosch/dartlang-snippets'
+    use 'tpope/vim-projectionist'
   -- use 'natebosch/vim-lsc'
   -- use 'natebosch/vim-lsc-dart'
 

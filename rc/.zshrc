@@ -2,7 +2,9 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export QT_STYLE_OVERRIDE=kvantum
+# export QT_STYLE_OVERRIDE=kvantum
+# export QT_QPA_PLATFORMTHEME=qt5ct
+
 export ZSH="$HOME/.oh-my-zsh"
 # export ZSH=/usr/share/oh-my-zsh/
 export EDITOR=nvim
@@ -77,7 +79,10 @@ ZSH_THEME="candy"
 plugins=(git docker npm zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
-
+alias ls="ls -la --color=auto"
+alias bsc="$EDITOR .config/bspwm/bspwmrc"
+alias pbc="$EDITOR .config/polybar/config.ini"
+alias sxc="$EDITOR .config/sxhkd/sxhkdrc"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -103,4 +108,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias xampp="sudo /opt/lampp/xampp "
 export PATH="$PATH:/home/rizqirazkafi/flutter/bin"
+# export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-17.0.4.0.8-1.fc36.x86_64
+export HADOOP_HOME=~/hadoop/hadoop-3.3.0
+export PATH=$PATH:$HADOOP_HOME/bin
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$PATH:/home/rizqirazkafi/.local/bin"

@@ -8,7 +8,13 @@ super + Return
 
 # program launcher
 super + @space
+	rofi -show drun 
+# window checker
+super + shift + w
+	rofi -show window
+super + alt + space
 	dmenu_run
+	# dmenu_run
 # file manager
 super + shift + Return
 	dolphin
@@ -16,6 +22,8 @@ super + shift + Return
 ctrl + alt + c
 	codium
 # Web Browser
+super + g
+	google-chrome-stable
 super + w
 	firefox
 # make sxhkd reload its configuration files:
@@ -24,14 +32,25 @@ super + Escape
 # Screenshot
 super + Print
     flameshot screen -p ~/Pictures/screenshot -c
+# Video editor
+	kdenlive
+# Media Player
+	vlc
+# Virtual Machine
+super + v
+	virt-manager
 #
 # bspwm hotkeys
 #
-
+# lockscreen
+alt + shift + x
+	betterlockscreen -l dim
 # quit/restart bspwm
 super + alt + {q,r}
 	bspc {quit,wm -r}
-
+# dmenu prompt script
+super + x
+	~/$HOME/.bin/logout.sh
 # close and kill
 super + q
 	bspc node -{c}

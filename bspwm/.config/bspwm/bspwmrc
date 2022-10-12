@@ -1,4 +1,9 @@
 #!/usr/bin/sh
+# env QT_STYLE_OVERRIDE=kvantum
+# env QT_STYLE_OVERRIDE=gnome
+env QT_QPA_PLATFORMTHEME=qt5ct
+# env QT_QPA_PLATFORMTHEME=qt5ct
+# env XDG_CURRENT_DESKTOP=KDE
 xrandr --dpi 96
 bspc rule -r "*"
 MONITOR_NAME="eDP"
@@ -12,24 +17,22 @@ else
     /home/$USER/.screenlayout/second-deactivate.sh
     notify-send "Second monitor deattached!"
 fi
-killall flameshot 
 killall nm-applet
 sxhkd &
 wmname compiz &
 export _JAVA_AWT_WM_NONREPARENTING=1 &
 wmname LG3D &
 nm-applet &
-flameshot &
 nitrogen --restore &
 # exec --no-startup-id xsettingsd &
 # export QT_STYLE_OVERRIDE=kvantum
 /usr/libexec/xfce-polkit &
 # /usr/lib/xfce4/notifyd/xfce4-notifyd &
 if [[ ! $STATUS_EXTERNAL_MONITOR == *disconnected* ]]; then
-	bspc monitor $MONITOR_NAME -d I II III IV V
-	bspc monitor $EXTERNAL_MONITOR_NAME -d VI VII VII
+	bspc monitor $MONITOR_NAME -d 1 2 3 4 5
+	bspc monitor $EXTERNAL_MONITOR_NAME -d 6 7 8
 else
-	bspc monitor -d I II III IV V 
+	bspc monitor -d 1 2 3 4 5 
 fi
 $HOME/.config/polybar/launch.sh &
 
@@ -48,7 +51,7 @@ bspc config presel_feedback_color "#bd93f9"
 
 bspc rule -a Zathura state=gapless_monocle 
 bspc rule -a SummertimeSaga desktop='^4' state=gapless_monocle 
-bspc rule -a "zoom " desktop='^5' state=floating
+bspc rule -a "zoom" desktop='^5' state=floating
 bspc rule -a Godot state=floating
 bspc rule -a Gimp-2.10 desktop='^4' state=gapless_monocle follow=on
 bspc rule -a mplayer2 state=floating

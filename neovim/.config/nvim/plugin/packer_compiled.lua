@@ -41,6 +41,9 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
   _G._packer.profile_output = results
 end
@@ -71,6 +74,21 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-cmdline"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
+    url = "https://github.com/hrsh7th/cmp-cmdline"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
   ["coc.nvim"] = {
     loaded = true,
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/coc.nvim",
@@ -85,6 +103,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/dartlang-snippets",
     url = "https://github.com/natebosch/dartlang-snippets"
+  },
+  ["flutter-tools.nvim"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/flutter-tools.nvim",
+    url = "https://github.com/akinsho/flutter-tools.nvim"
   },
   fzf = {
     loaded = true,
@@ -106,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -121,6 +149,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["sxhkd-vim"] = {
     loaded = true,
@@ -142,10 +175,10 @@ _G.packer_plugins = {
     path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
   },
-  ["vim-flutter"] = {
+  ["vim-indent-guides"] = {
     loaded = true,
-    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-flutter",
-    url = "https://github.com/thosakwe/vim-flutter"
+    path = "/home/rizqirazkafi/.local/share/nvim/site/pack/packer/start/vim-indent-guides",
+    url = "https://github.com/nathanaelkane/vim-indent-guides"
   },
   ["vim-markdown"] = {
     loaded = true,

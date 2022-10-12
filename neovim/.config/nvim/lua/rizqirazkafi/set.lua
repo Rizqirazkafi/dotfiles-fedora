@@ -3,9 +3,9 @@ local g = vim.g
 o.nu = true
 o.relativenumber = true
 o.errorbells = false
-o.tabstop = 4
-o.softtabstop = 4
-o.shiftwidth = 4
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
 o.expandtab = true
 o.smartindent = true
 o.wrap = false
@@ -37,3 +37,7 @@ g.vimtex_compiler_progname = 'pdflatex'
 g.vimtex_view_method = 'zathura'
 -- Indent Guides
 g.indent_guides_enable_on_vim_startup = 1
+vim.cmd([[
+autocmd TermOpen * setlocal nonumber norelativenumber
+tnoremap <Esc> <C-\><C-n>
+]])
