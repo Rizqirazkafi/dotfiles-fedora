@@ -35,7 +35,6 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
-      ':TSUpdate'
     end,
   }
 
@@ -43,6 +42,11 @@ require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
+  
+  -- Programming related plugins
+  use 'townk/vim-autoclose' --autoclose plugin
+  use 'simrat39/rust-tools.nvim' --Rust plugin
+  use 'puremourning/vimspector' -- Debuger
 
   -- Git related plugins
   use 'tpope/vim-fugitive'
@@ -126,6 +130,7 @@ vim.cmd [[colorscheme onedark]]
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+vim.o.wrap = false
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -136,6 +141,21 @@ vim.g.maplocalleader = ' '
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Keybinding for Ex file manager
+vim.keymap.set('n', '<Leader>pv', '<cmd>Ex<CR>')
+-- Remap split navigation
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+-- Adjust split sizes
+vim.keymap.set('n', '<left>', '<cmd>vertical res +3<CR>')
+vim.keymap.set('n', '<right>', '<cmd>vertical res -3<CR>')
+vim.keymap.set('n', '<up>', '<cmd>res +3<CR>')
+vim.keymap.set('n', '<down>', '<cmd>res -3<CR>')
+-- Remap for exiting Nvim terminal 
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -222,7 +242,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'go',  'python', 'rust', 'typescript', 'help' },
 
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
@@ -424,6 +444,36 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- Setup for Rust server
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+
+-- Vim Spector Configuration
+vim.cmd([[
+let g:vimspector_sidebar_width = 85
+let g:vimspector_bottombar_height = 15
+let g:vimspector_terminal_maxwidth = 70
+nmap <F9> <cmd>call vimspector#Launch()<cr>
+nmap <F5> <cmd>call vimspector#StepOver()<cr>
+nmap <F8> <cmd>call vimspector#Reset()<cr>
+nmap <F11> <cmd>call vimspector#StepOver()<cr>")
+nmap <F12> <cmd>call vimspector#StepOut()<cr>")
+nmap <F10> <cmd>call vimspector#StepInto()<cr>")
+]])
+vim.keymap.set('n', 'Db', "<cmd>:call vimspector#ToggleBreakpoint()<CR>")
+vim.keymap.set('n', 'Dw', "<cmd>:call vimspector#AddWatch()<CR>")
+vim.keymap.set('n', 'De', "<cmd>:call vimspector#Evaluate()<CR>")
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
