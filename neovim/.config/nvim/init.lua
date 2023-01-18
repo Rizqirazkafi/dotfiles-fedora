@@ -38,11 +38,15 @@ require('packer').startup(function(use)
     end,
   }
 
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
   use { -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
-  
+
   -- Programming related plugins
   use 'townk/vim-autoclose' --autoclose plugin
   use 'simrat39/rust-tools.nvim' --Rust plugin
@@ -111,7 +115,7 @@ vim.o.mouse = 'a'
 
 -- Enable break indent
 vim.o.breakindent = true
-
+vim.o.smartindent = true
 -- Save undo history
 vim.o.undofile = true
 
@@ -129,6 +133,9 @@ vim.cmd [[colorscheme onedark]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+-- Enable relative line numbers
+vim.o.relativenumber = true
 
 vim.o.wrap = false
 -- [[ Basic Keymaps ]]
@@ -154,7 +161,7 @@ vim.keymap.set('n', '<left>', '<cmd>vertical res +3<CR>')
 vim.keymap.set('n', '<right>', '<cmd>vertical res -3<CR>')
 vim.keymap.set('n', '<up>', '<cmd>res +3<CR>')
 vim.keymap.set('n', '<down>', '<cmd>res -3<CR>')
--- Remap for exiting Nvim terminal 
+-- Remap for exiting Nvim terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- Remap for dealing with word wrap
@@ -242,63 +249,10 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go',  'python', 'rust', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'go', 'python', 'rust', 'typescript', 'help' },
 
   highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<c-space>',
-      node_incremental = '<c-space>',
-      scope_incremental = '<c-s>',
-      node_decremental = '<c-backspace>',
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-      keymaps = {
-        -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
-      },
-      goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
-      },
-      goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
-      },
-      goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
-      },
-    },
-    swap = {
-      enable = true,
-      swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-      },
-      swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-      },
-    },
-  },
+  indent = { enable = false, disable = { 'python' } },
 }
 
 -- Diagnostic keymaps
@@ -350,6 +304,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+  nmap('<leader>f', function()
+    vim.lsp.buf.format { async = true }
+  end)
 end
 
 -- Enable the following language servers
@@ -458,23 +415,6 @@ rt.setup({
   },
 })
 
--- Vim Spector Configuration
-vim.cmd([[
-let g:vimspector_sidebar_width = 85
-let g:vimspector_bottombar_height = 15
-let g:vimspector_terminal_maxwidth = 70
-nmap <F9> <cmd>call vimspector#Launch()<cr>
-nmap <F5> <cmd>call vimspector#StepOver()<cr>
-nmap <F8> <cmd>call vimspector#Reset()<cr>
-nmap <F11> <cmd>call vimspector#StepOver()<cr>")
-nmap <F12> <cmd>call vimspector#StepOut()<cr>")
-nmap <F10> <cmd>call vimspector#StepInto()<cr>")
-]])
-vim.keymap.set('n', 'Db', "<cmd>:call vimspector#ToggleBreakpoint()<CR>")
-vim.keymap.set('n', 'Dw', "<cmd>:call vimspector#AddWatch()<CR>")
-vim.keymap.set('n', 'De', "<cmd>:call vimspector#Evaluate()<CR>")
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
