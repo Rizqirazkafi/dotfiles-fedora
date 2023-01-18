@@ -16,6 +16,9 @@ while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
 	i3
 	dmenu
 	rxvt-unicode	
+	stow
+	lxappearance
+	volumeicon-alsa
 EOF
 )
 
