@@ -19,6 +19,10 @@ while read -r p ; do sudo apt-get install -y $p ; done < <(cat << "EOF"
 	stow
 	lxappearance
 	volumeicon-alsa
+	playerctl
+	brightnessctl
+	brightness-udev
+	vlc
 EOF
 )
 
