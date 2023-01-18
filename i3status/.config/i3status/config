@@ -35,7 +35,7 @@ battery all {
 }
 
 disk "/" {
-        format = "%avail"
+        format = "Disk:%avail"
 }
 
 load {
@@ -49,5 +49,5 @@ memory {
 }
 
 tztime local {
-        format = "%Y-%m-%d %H:%M:%S"
+        format = "%Y-%m-%d %H:%M"
 }
