@@ -134,7 +134,7 @@ require('onedark').setup{
   style = 'darker',
 
   lualine = {
-    transparent = false,
+    transparent = true,
     darker = true,
   }
 }

@@ -23,15 +23,16 @@ font pango:monospace 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
 # start picom as compositor
-exec_always --no-startup-id picom --experimental-backends -b
+# exec_always --no-startup-id picom  -b
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/rizqirazkafi/.bin/i3exit lock --nofork
-
+exec --no-startup-id /usr/bin/lxpolkit
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -132,8 +133,8 @@ bindsym $mod+a focus parent
 bindsym $mod+w exec firefox
 bindsym $mod+Shift+Return exec nautilus
 bindsym $mod+Print exec flameshot screen -p ~/Pictures/screenshot -c
-bindsym $mod+t exec telegram
-bindsym $mod+g gimp
+bindsym $mod+Shift+t exec telegram-desktop
+bindsym $mod+g exec gimp
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"

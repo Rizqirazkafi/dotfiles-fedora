@@ -31,3 +31,4 @@ export PATH=$PATH:$HADOOP_HOME/bin
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 
 
+. "$HOME/.cargo/env"

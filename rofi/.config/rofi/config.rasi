@@ -1,5 +1,5 @@
 configuration {
-	modes: "window,drun,run,ssh";
+	modi: "window,drun,run,ssh";
 /*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -149,4 +149,5 @@ configuration {
       sorting-method:    "name";
   }
 }
-@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+//@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"

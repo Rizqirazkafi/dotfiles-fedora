@@ -2,7 +2,7 @@
 
 case "$1" in
     lock)
-        i3lock -i $HOME/Pictures/lock/lock-1.png
+        i3lock -i $HOME/Pictures/lock/linux-wall.png
         ;;
     logout)
         i3-msg exit
