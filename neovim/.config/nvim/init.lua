@@ -31,19 +31,22 @@ require('packer').startup(function(use)
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
-  use { -- Highlight, edit, and navigate code 'nvim-treesitter/nvim-treesitter',
-    run = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end, }
 
+  use {    -- Highlight, edit, and navigate code 'nvim-treesitter/nvim-treesitter',
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
 
   -- Programming related plugins
-  use 'townk/vim-autoclose'                --autoclose plugin
-  use 'simrat39/rust-tools.nvim'           --Rust plugin
+  use 'townk/vim-autoclose'      --autoclose plugin
+  use 'simrat39/rust-tools.nvim' --Rust plugin
   -- use 'mads-hartmann/bash-language-server' -- Bash plugin
 
   -- Markdown writting
