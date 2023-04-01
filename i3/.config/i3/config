@@ -24,6 +24,7 @@ font pango:monospace 10
 exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
+# exec --no-startup-id "i3-msg 'workspace2; append_layout /home/rizqirazkafi/.config/i3/workspace-2.json'"
 # start picom as compositor
 # exec_always --no-startup-id picom  -b
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
@@ -55,8 +56,8 @@ bindsym XF86AudioStop exec playerctl -a stop
 
 
 # Use xbacklight to adjust brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -dec 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 #Scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -133,7 +134,7 @@ bindsym $mod+a focus parent
 bindsym $mod+w exec firefox
 bindsym $mod+Shift+Return exec nautilus
 bindsym $mod+Print exec flameshot screen -p ~/Pictures/screenshot -c
-bindsym $mod+Shift+t exec telegram-desktop
+bindsym $mod+Shift+t exec flatpak run org.telegram.desktop
 bindsym $mod+g exec gimp
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -232,3 +233,5 @@ bar {
 }
 
 #user settings
+for_window [class="zoom"] floating enable
+assign [class="zoom"] 4
