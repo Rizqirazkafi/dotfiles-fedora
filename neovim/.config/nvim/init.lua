@@ -31,37 +31,41 @@ require('packer').startup(function(use)
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
-  use { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
+  use { -- Highlight, edit, and navigate code 'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  }
+    end, }
 
   use {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
-  use { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = 'nvim-treesitter',
-  }
 
   -- Programming related plugins
-  use 'townk/vim-autoclose' --autoclose plugin
-  use 'simrat39/rust-tools.nvim' --Rust plugin
-  use 'puremourning/vimspector' -- Debuger
+  use 'townk/vim-autoclose'                --autoclose plugin
+  use 'simrat39/rust-tools.nvim'           --Rust plugin
+  -- use 'mads-hartmann/bash-language-server' -- Bash plugin
 
+  -- Markdown writting
+  use 'preservim/vim-markdown'
+
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+    ft = { "markdown" },
+  })
   -- Git related plugins
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  use 'navarasu/onedark.nvim'               -- Theme inspired by Atom
+  use 'shaunsingh/solarized.nvim'
+  use 'nvim-lualine/lualine.nvim'           -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'numToStr/Comment.nvim'               -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'                    -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -130,7 +134,7 @@ vim.wo.signcolumn = 'yes'
 -- Set colorscheme
 vim.o.termguicolors = true
 -- vim.cmd [[colorscheme onedark]]
-require('onedark').setup{
+require('onedark').setup {
   style = 'darker',
 
   lualine = {
@@ -138,6 +142,7 @@ require('onedark').setup{
     darker = true,
   }
 }
+-- require('solarized').set()
 require('onedark').load()
 
 -- Set completeopt to have a better completion experience
@@ -153,7 +158,7 @@ vim.o.wrap = false
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
+vim.g.mkdp_browser = 'firefox'
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -193,7 +198,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    -- theme = 'onedark',
+    theme = 'onedark',
     component_separators = '|',
     section_separators = '',
   },
@@ -260,7 +265,7 @@ require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'python', 'rust', 'typescript', 'help' },
 
-  highlight = { enable = true },
+  highlight = { enable = true, rainbow = { enable = true, } },
   indent = { enable = false, disable = { 'python' } },
 }
 
@@ -330,7 +335,8 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
+  bashls = {},
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
@@ -424,6 +430,7 @@ rt.setup({
   },
 })
 
-
+-- Bash server config
+require('lspconfig').bashls.setup {}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
