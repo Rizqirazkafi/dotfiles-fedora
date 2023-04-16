@@ -36,6 +36,8 @@ local plugins = {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     },
+    -- Useful status updates for LSP
+    'j-hui/fidget.nvim',
 
     -- Programming related plugins
     'townk/vim-autoclose',                 --autoclose plugin
