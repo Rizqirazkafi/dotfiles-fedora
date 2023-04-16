@@ -30,30 +30,53 @@ local on_attach = function(_, bufnr)
         vim.lsp.buf.format()
     end)
 end
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig").lua_ls.setup{
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig")['lua_ls'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = {
                 globals = { 'vim' }
-            }
-        }
+            },
+            workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false
+            },
+
+        },
+    },
+}
+require("lspconfig").emmet_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+    init_options = {
+        html = {
+            options = {
+                -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                ["bem.enabled"] = true,
+            },
+        },
     }
 }
-require("lspconfig").html.setup{
+require("lspconfig").html.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"html"},
 }
-require("lspconfig").cssls.setup{
+require("lspconfig").cssls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"css"},
 }
-require("lspconfig").tsserver.setup{
+require("lspconfig").tsserver.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
+    single_file_support = true,
 }
-require("lspconfig").eslint.setup{
+require("lspconfig").eslint.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
 }
-
-
