@@ -51,7 +51,7 @@ require("lspconfig")['lua_ls'].setup {
 require("lspconfig").emmet_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "css", "eruby", "html", "javascript", "javascriptreact", "less", "sass", "scss", "svelte", "pug", "typescriptreact", "vue" },
+    filetypes = { "css", "eruby", "html", "less", "sass", "scss", "svelte", "pug", "vue" },
     init_options = {
         html = {
             options = {
