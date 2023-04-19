@@ -36,6 +36,14 @@ local plugins = {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     },
+    -- Markdown writting
+    {
+        "iamcco/markdown-preview.nvim",
+        -- ft = 'markdown',
+        config = function()
+            vim.fn["mkdp#util#install"]()
+        end,
+    },
     -- Useful status updates for LSP
     'j-hui/fidget.nvim',
 
