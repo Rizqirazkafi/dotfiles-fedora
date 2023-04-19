@@ -20,3 +20,5 @@ vim.keymap.set('n', '<up>', '<cmd>res +3<CR>')
 vim.keymap.set('n', '<down>', '<cmd>res -3<CR>')
 -- Remap for exiting Nvim terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+-- Remap for new tab
+vim.keymap.set('n', '<C-t>', vim.cmd.tabnew)
