@@ -79,4 +79,13 @@ require("lspconfig").tsserver.setup {
 require("lspconfig").eslint.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    single_file_support = true,
+}
+require("lspconfig").marksman.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+require("lspconfig").jsonls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
