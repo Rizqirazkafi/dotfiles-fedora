@@ -45,7 +45,7 @@ local plugins = {
         end,
     },
     -- Useful status updates for LSP
-    'j-hui/fidget.nvim',
+    { 'j-hui/fidget.nvim',  tag = "legacy" },
 
     -- Programming related plugins
     'townk/vim-autoclose',                 --autoclose plugin
@@ -58,6 +58,11 @@ local plugins = {
     'tpope/vim-fugitive',
     'lewis6991/gitsigns.nvim',
     -- completion
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        -- ft = { "python" },
+        opts = function() return require("null-ls") end,
+    },
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
     'L3MON4D3/LuaSnip',

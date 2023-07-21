@@ -6,9 +6,9 @@ require("mason-lspconfig").setup({
         "cssls",
         "tsserver",
         "eslint",
+        "pyright",
     }
 })
-
 local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
@@ -89,3 +89,50 @@ require("lspconfig").jsonls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
+require("lspconfig").phpactor.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+        ["language_server_phpstan.enabled"] = false,
+        ["language_server_psalm.enabled"] = false,
+    }
+}
+-- require("lspconfig").intelephense.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+-- }
+-- require("lspconfig").pyright.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = {"python"},
+-- }
+require("lspconfig").gopls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {"gopls"},
+    filetypes = {"go", "gomod", "gowork", "gotmp"},
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+                unusedparams = true,
+            },
+        },
+    },
+}
+require("lspconfig").pylsp.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"python"},
+    settings = {
+        pylsp ={
+            plugins = {
+                python_lsp_black = {enabled = true, line_length = 80}, --black doesn't use exec
+                python_lsp_ruff = {enabled = true}, --mypy doesn't use exec
+                pylsp_mypy = {enabled = true}, --mypy doesn't use exec
+            }
+        }
+    }
+}
+
