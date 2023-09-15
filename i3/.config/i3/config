@@ -23,7 +23,8 @@ font pango:monospace 10
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
-
+#exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf --experimental-backends
+exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf 
 exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
 # exec --no-startup-id "i3-msg 'workspace2; append_layout /home/rizqirazkafi/.config/i3/workspace-2.json'"
 # start picom as compositor
@@ -210,6 +211,14 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Binding for webcam to float and stick
+for_window [title="video0 - mpv"] floating enable
+for_window [title="video0 - mpv"] sticky enable
+for_window [title="video0 - mpv"] border pixel 0
+for_window [title="video0 - mpv"] title_format ""
+
+bindsym $mod+c exec --no-startup-id $HOME/.bin/camtoggle
 
 # set screenlock
 set $Locker i3lock -i $HOME/Pictures/lock/linux-wall.png && sleep 1
