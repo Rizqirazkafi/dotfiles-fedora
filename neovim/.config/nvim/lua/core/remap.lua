@@ -14,10 +14,10 @@ vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 -- Adjust split sizes
-vim.keymap.set('n', '<left>', '<cmd>vertical res +3<CR>')
-vim.keymap.set('n', '<right>', '<cmd>vertical res -3<CR>')
-vim.keymap.set('n', '<up>', '<cmd>res +3<CR>')
-vim.keymap.set('n', '<down>', '<cmd>res -3<CR>')
+vim.keymap.set('n', '<C-left>', '<cmd>vertical res +3<CR>')
+vim.keymap.set('n', '<C-right>', '<cmd>vertical res -3<CR>')
+vim.keymap.set('n', '<C-up>', '<cmd>res +3<CR>')
+vim.keymap.set('n', '<C-down>', '<cmd>res -3<CR>')
 -- Remap for exiting Nvim terminal
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 -- Remap for new tab
