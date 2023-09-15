@@ -25,10 +25,5 @@ fi
 
 unset rc
 export PATH="$PATH:/home/rizqirazkafi/flutter/bin"
-export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-export HADOOP_HOME=~/hadoop/hadoop-3.3.0
-export PATH=$PATH:$HADOOP_HOME/bin
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-
-
+#export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
 . "$HOME/.cargo/env"
