@@ -221,7 +221,7 @@ for_window [title="video0 - mpv"] title_format ""
 bindsym $mod+c exec --no-startup-id $HOME/.bin/camtoggle
 
 # set screenlock
-set $Locker i3lock -i $HOME/Pictures/lock/linux-wall.png && sleep 1
+set $Locker i3lock -i $HOME/Pictures/lock/lone-spongebob.png && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
