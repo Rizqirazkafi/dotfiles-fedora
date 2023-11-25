@@ -135,4 +135,12 @@ require("lspconfig").pylsp.setup{
         }
     }
 }
+require("lspconfig").ltex.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+require("lspconfig").texlab.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 
