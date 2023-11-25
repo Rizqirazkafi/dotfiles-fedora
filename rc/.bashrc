@@ -26,4 +26,3 @@ fi
 unset rc
 export PATH="$PATH:/home/rizqirazkafi/flutter/bin"
 #export JAVA_HOME="$(jrunscript -e 'java.lang.System.out.println(java.lang.System.getProperty("java.home"));')"
-. "$HOME/.cargo/env"
