@@ -31,7 +31,6 @@ exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
 # exec_always --no-startup-id picom  -b
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
-
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- /home/rizqirazkafi/.bin/i3exit lock --nofork
@@ -136,7 +135,7 @@ bindsym $mod+a focus parent
 bindsym $mod+w exec firefox
 bindsym $mod+Shift+Return exec nautilus
 bindsym Mod4+Print exec flameshot screen -p ~/Pictures/screenshot -c
-bindsym $mod+Shift+t exec flatpak run org.telegram.desktop
+bindsym $mod+Shift+t exec telegram-desktop
 bindsym $mod+g exec gimp
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
