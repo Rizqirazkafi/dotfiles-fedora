@@ -1,0 +1,12 @@
+#!/run/current-system/sw/bin/bash
+
+# Get the current status of the i3 bar
+status=$(i3-msg -t get_bar_config | grep -o 'dock\|invisible')
+
+# Toggle the i3 bar based on the current status
+if [ "$status" == "dock" ]; then
+    i3-msg bar mode invisible
+else
+    i3-msg bar mode dock
+fi
+

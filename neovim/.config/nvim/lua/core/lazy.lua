@@ -26,31 +26,33 @@ local plugins = {
     {
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-        },
-        build = ":TSUpdate",
+        -- dependencies = {
+        --     'nvim-treesitter/nvim-treesitter-textobjects',
+        -- },
+        -- build = ":TSUpdate",
     },
-    'nvim-treesitter/playground',
+    -- 'nvim-treesitter/playground',
     {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     },
     -- Markdown writting
-    {
-        "iamcco/markdown-preview.nvim",
-        -- ft = 'markdown',
-        config = function()
-            vim.fn["mkdp#util#install"]()
-        end,
-    },
+    -- {
+    --     "iamcco/markdown-preview.nvim",
+    --     ft = 'markdown',
+    --     config = function()
+    --         vim.fn["mkdp#util#install"]()
+    --     end,
+    -- },
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim',  tag = "legacy" },
 
     -- Programming related plugins
     'townk/vim-autoclose',                 --autoclose plugin
     'nvim-lualine/lualine.nvim',           -- Fancier statusline
-    'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
+    {
+        -- 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+    },
     'numToStr/Comment.nvim',               -- "gc" to comment visual regions/lines
     -- Navigation
     'ThePrimeagen/harpoon',                -- buffer navigation [GOAT]

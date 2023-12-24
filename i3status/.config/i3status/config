@@ -40,7 +40,7 @@ disk "/" {
         format = "Disk:%avail"
 }
 
-disk "/home/rizqirazkafi/external-ssd" {
+disk "/home/rizqirazkafi/secondssd/" {
         format = "Disk:%avail"
 }
 

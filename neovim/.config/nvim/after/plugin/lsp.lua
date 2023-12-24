@@ -32,10 +32,9 @@ local on_attach = function(_, bufnr)
 end
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-require("lspconfig")['lua_ls'].setup {
+require("lspconfig").lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = {
         Lua = {
             diagnostics = {
                 globals = { 'vim' }
@@ -46,7 +45,6 @@ require("lspconfig")['lua_ls'].setup {
             },
 
         },
-    },
 }
 require("lspconfig").emmet_ls.setup {
     on_attach = on_attach,
