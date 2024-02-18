@@ -14,7 +14,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 14
+font pango:TerminessNerdFont-Regular 14
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -140,7 +140,7 @@ bindsym $mod+a focus parent
 
 #Application related keybindings
 bindsym $mod+w exec firefox
-bindsym $mod+Shift+Return exec thunar
+bindsym $mod+Shift+Return exec pcmanfm
 bindsym Mod4+Print exec flameshot screen -p ~/Pictures/screenshot -c
 bindsym $mod+Shift+t exec telegram-desktop
 bindsym $mod+g exec gimp
@@ -260,8 +260,6 @@ bindsym $mod+x mode "$mode_system"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  output eDP-1-1
-  tray_output eDP-1-1
     status_command i3status
     position top
     colors {
@@ -269,27 +267,16 @@ bar {
       statusline #e0def4
       focused_workspace #c4a7e7 #c4a7e7 #ffffff
       inactive_workspace #191724 #191724 #ffffff
-
     }
 }
 
 
 client.focused  #c4a7e7  #c4a7e7  #ffffff  
 
-bar {
-  output HDMI-0
-  position top
-    colors {
-      background #191724
-      statusline #e0def4
-      focused_workspace #c4a7e7 #c4a7e7 #ffffff
-      inactive_workspace #191724 #191724 #ffffff
-
-    }
-}
 
 
 
 #user settings
 for_window [class="zoom"] floating enable
 assign [class="zoom"] 4
+assign [class="discord"] 4
