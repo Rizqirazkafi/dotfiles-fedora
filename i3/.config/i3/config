@@ -239,7 +239,7 @@ default_border pixel 3
 default_floating_border pixel 3
 
 # set screenlock
-set $Locker i3lock -c cc0099
+set $Locker dm-tool lock
 smart_borders on
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -263,15 +263,15 @@ bar {
     status_command i3status
     position top
     colors {
-      background #191724
-      statusline #e0def4
-      focused_workspace #c4a7e7 #c4a7e7 #ffffff
-      inactive_workspace #191724 #191724 #ffffff
+      background #1e1e2e
+      statusline #cdd6f4
+      focused_workspace #cba6f7 #cba6f7 #ffffff
+      inactive_workspace #1e1e2e #1e1e2e #ffffff
     }
 }
 
 
-client.focused  #c4a7e7  #c4a7e7  #ffffff  
+client.focused  #cba6f7  #cba6f7  #ffffff  
 
 
 
