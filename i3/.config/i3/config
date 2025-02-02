@@ -14,7 +14,7 @@ set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:TerminessNerdFont-Regular 14
+font pango:TerminessNerdFont-Regular 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,9 +24,10 @@ font pango:TerminessNerdFont-Regular 14
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 #exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf --experimental-backends
-exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf 
+exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom/picom.conf 
 exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
-exec --no-startup-id devilspie2
+exec_always --no-startup-id nitrogen --set-zoom-fill --random  /home/rizqirazkafi/Pictures/wallpapers
+# exec --no-startup-id devilspie2
 # exec --no-startup-id "i3-msg 'workspace2; append_layout /home/rizqirazkafi/.config/i3/workspace-2.json'"
 # start picom as compositor
 # exec_always --no-startup-id picom  -b
