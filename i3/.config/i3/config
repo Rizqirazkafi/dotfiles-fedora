@@ -26,7 +26,8 @@ exec --no-startup-id dex --autostart --environment i3
 #exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf --experimental-backends
 exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom/picom.conf 
 exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
-exec_always --no-startup-id nitrogen --set-zoom-fill --random  /home/rizqirazkafi/Pictures/wallpapers
+exec_always --no-startup-id nitrogen --set-zoom-fill --head=0 --random  /home/rizqirazkafi/Pictures/wallpapers
+exec_always --no-startup-id nitrogen --set-zoom-fill --head=1 --random  /home/rizqirazkafi/Pictures/wallpapers
 # exec --no-startup-id devilspie2
 # exec --no-startup-id "i3-msg 'workspace2; append_layout /home/rizqirazkafi/.config/i3/workspace-2.json'"
 # start picom as compositor
