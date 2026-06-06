@@ -1,2 +1,2 @@
 #!/run/current-system/sw/bin/bash
-pkill -f /dev/video0 || mpv --profile=low-latency --vf=scale=854:480 --no-input-default-bindings --no-osc --untimed --geometry=-0-0 --autofit=30%  /dev/video0
+pkill -f /dev/video0 || mpv --profile=low-latency --vf=scale=480:480 --no-input-default-bindings --no-osc --untimed --geometry=-0-0 --autofit=20%  /dev/video0
