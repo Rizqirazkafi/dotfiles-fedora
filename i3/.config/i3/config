@@ -26,9 +26,16 @@ font pango:TerminessNerdFont Bold 14
 exec --no-startup-id dex --autostart --environment i3
 #exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom.conf --experimental-backends
 exec_always --no-startup-id picom -b --config /home/rizqirazkafi/.config/picom/picom.conf 
-exec --no-startup-id xrandr --output eDP1 --set 'PRIME Synchronization' '1'
+exec --no-startup-id xrandr --output eDP-1 --primary --set 'PRIME Synchronization' '1' 
+exec --no-startup-id xrandr --output eDP-1-1 --primary --set 'PRIME Synchronization' '1' 
+# exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 144
+# exec --no-startup-id xrandr --output eDP-1-1 --mode 1920x1080 --rate 144
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rate 60
+exec --no-startup-id xrandr --output eDP-1-1 --mode 1920x1080 --rate 60
 exec_always --no-startup-id nitrogen --set-zoom-fill --head=0 --random  /home/rizqirazkafi/Pictures/wallpapers
 exec_always --no-startup-id nitrogen --set-zoom-fill --head=1 --random  /home/rizqirazkafi/Pictures/wallpapers
+exec --no-startup-id blueman-applet
+
 # exec --no-startup-id devilspie2
 # exec --no-startup-id "i3-msg 'workspace2; append_layout /home/rizqirazkafi/.config/i3/workspace-2.json'"
 # start picom as compositor
@@ -47,6 +54,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon 
 exec --no-startup-id flameshot
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id keepassxc
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
@@ -67,8 +75,8 @@ bindsym XF86AudioStop exec playerctl -a stop
 
 
 # Use xbacklight to adjust brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 #Scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -142,11 +150,9 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 #Application related keybindings
-bindsym $mod+w exec zen
-bindsym $mod+Shift+Return exec pcmanfm
+bindsym $mod+w exec zen-beta
+bindsym $mod+Shift+Return exec nautilus
 bindsym Mod4+Print exec flameshot screen -p ~/Pictures/screenshot -c
-bindsym $mod+Shift+t exec telegram-desktop
-bindsym $mod+g exec gimp
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -228,6 +234,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+for_window [title="Picture-in-Picture"] sticky enable
 # Binding for webcam to float and stick
 for_window [title="video0 - mpv"] floating enable
 for_window [title="video0 - mpv"] sticky enable
@@ -263,20 +270,21 @@ bindsym $mod+x mode "$mode_system"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    tray_output primary
     separator_symbol "|"
     status_command i3status
     position top
     colors {
       separator #ffffff
-      background #1e1e2e
-      statusline #cdd6f4
-      focused_workspace #cba6f7 #1e1e2e #ffffff
-      inactive_workspace #1e1e2e #1e1e2e #ffffff
+      background #000000
+      statusline #ffffff
+      focused_workspace #0080000 #0080000 #ffffff
+      inactive_workspace #2a2a2a #2a2a2a #ffffff
     }
 }
 
 
-client.focused  #cba6f7  #cba6f7  #ffffff  
+client.focused  #0080000  #0080000  #ffffff  
 
 
 
